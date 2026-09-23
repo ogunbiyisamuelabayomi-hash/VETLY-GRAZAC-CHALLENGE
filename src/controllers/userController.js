@@ -12,11 +12,11 @@ try{
 if (!name){
     return res.status(400).json({message: "name is required"});
 }
- if (!email.includes("@")){
-            return res.status(400).json({message: "please enter a valid email"});
-        }
  if (!email) {
             return res.status(400).json({message:"email is required"});
+        }
+        if (!email.includes("@")){
+            return res.status(400).json({message: "please enter a valid email"});
         }
         if (!password) {
             return res.status(400).json({message: "password is required"});
@@ -46,7 +46,7 @@ role: newUser.role
     }
 });
 } catch(error) {
- console.log(error.mesage);
+ console.log(error.message);
     return res.status(500).json({mesage: "Registration failed"});
 }
 
@@ -90,7 +90,7 @@ role: user.role
     }
 });
     }catch(error){
-        console.log(error.mesage);
+        console.log(error.message);
     return res.status(500).json({mesage: "login failed"});
 }
 };

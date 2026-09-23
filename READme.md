@@ -91,6 +91,11 @@ VetlyGrazac/
 │   ├── seeders/
 │   │   └── adminSeeder.js
 │   │
+│   ├── tests/
+│   │   └── unit/
+│   │       ├── petController.test.js
+│   │       └── userController.test.js
+│   │
 │   ├── utils/
 │   │   └── generateToken.js
 │   │
@@ -105,6 +110,31 @@ VetlyGrazac/
 └── package-lock.json
 ```
 
+# Vetly Backend API
+
+
+## Unit Testing
+
+Unit testing was implemented using Jest.
+
+The application contains unit tests for:
+
+- User registration
+- User login
+- Pet creation
+- Fetching all pets
+- Updating pets
+- Purchasing pets
+- Deleting pets
+- Input validation
+
+### Test Result
+
+- Test Suites: 2 passed
+- Tests: 25 passed
+- Snapshots: 0
+
+
 
 ## Postman API Documentation
 
@@ -116,3 +146,5 @@ You can view the complete API documentation here:
 (https://documenter.getpostman.com/view/56988360/2sBYB2rnEy)
 
 ``
+
+
