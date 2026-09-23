@@ -1,20 +1,17 @@
 const PetModel = require("../models/petModel");
+const uploadToCloudinary = require("../utils/uploadToCloudinary")
 
 // CREATE PETS AND VALIDATION
 
 const createPet = async (req, res) => {
     try{
-        const { breedName, age, picture, cost, quantity } = req.body;
+        const { breedName, age, cost, quantity } = req.body;
         if(!breedName) {
             return res.status(400).json({ message: "Breed name is required" });
         }
 
         if(!age) {
             return res.status(400).json({ message: "Age is required" });
-        }
-
-        if(!picture) {
-            return res.status(400).json({ message: "Picture is required" });
         }
 
         if(!cost) {
@@ -24,6 +21,11 @@ const createPet = async (req, res) => {
         if(!quantity) {
             return res.status(400).json({ message: "Quantity is required" });
         }
+         if(!req.file) {
+            return res.status(400).json({ message: "Picture is required" });
+        }
+
+        const picture = await uploadToCloudinary(req.file.buffer);
 
         const newPet = await PetModel.create ({ 
             breedName,

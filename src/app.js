@@ -1,12 +1,14 @@
-const express = require("express");
 const dotenv = require ("dotenv");
+dotenv.config();
+
+const express = require("express");
 const userRoutes = require("./routes/userRoutes");
 const petRoutes = require("./routes/petRoutes");
 const createAdmin = require("./seeders/adminSeeder")
 
 
 const app = express();
-dotenv.config();
+
 createAdmin();
 
 

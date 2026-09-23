@@ -23,7 +23,7 @@ const createAdmin = async () => {
             role: "ROLE_ADMIN"
         });
 
-        console.log("Admin account created successfully");
+        console.log("Admin account created successfully"); 
 
     }catch (error) {
         console.log(error.message);
