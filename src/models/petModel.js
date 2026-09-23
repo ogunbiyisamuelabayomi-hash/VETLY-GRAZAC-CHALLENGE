@@ -5,6 +5,7 @@ const petSchema = new mongoose.Schema({
     age: {type: Number, required: true},
     picture: {type: String, reqired: true},
     cost: {type: Number, reqired: true},
+    quantity:{type: Number, required: true},
 },{timestamps : true})
 
 const PetModel= mongoose.model("Pet", petSchema);

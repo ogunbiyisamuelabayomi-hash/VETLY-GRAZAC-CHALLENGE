@@ -2,6 +2,7 @@ const UserModel = require("../models/userModel");
 const bcrypt = require ("bcrypt");
 const generateToken = require("../utils/generateToken")
 
+// CREATE USER AND VALDATION
 
 const registerUser = async (req, res ) => {
 
@@ -21,10 +22,13 @@ if (!name){
             return res.status(400).json({message: "password is required"});
         }
 
-    const userExist = await UserModel.findOne({email});
+    const userExist = await UserModel.findOne({email}); // CONFIRMING IF USER ALREADY EXIST IN DB
 if (userExist) {
     return res.status(409).json("user already exist");
 }
+
+
+// HASHING PASSWORD BEFORE SAVING TO DB
 
 const hashPassword = await bcrypt.hash(password, 10);
 const newUser = await UserModel.create({
@@ -42,11 +46,13 @@ role: newUser.role
     }
 });
 } catch(error) {
- console.log(error.mesage)
-    return res.status(500).json({mesage: "Registration failed"})
+ console.log(error.mesage);
+    return res.status(500).json({mesage: "Registration failed"});
 }
 
 };
+
+// USER LOGIN AND VALIDATION
 
 
 const loginUser = async (req, res) => {
@@ -64,12 +70,14 @@ if(!user){
     return res.status(404).json({message: "user not found"});
 }
 
+// COMPARING THE SAVED HASHED PASSWORD IN THE DB
+
 const comparePassword = await bcrypt.compare(password, user.password);
 if(!comparePassword){
     return res.status(401).json({message: "invalid password"});
 }
 
- const token = generateToken(user._id, user.role);
+ const token = generateToken(user._id, user.role); //  JSON WEBTOKEN FOR USER
 
 return res.status(200).json({
     message: "login successful",
@@ -82,8 +90,8 @@ role: user.role
     }
 });
     }catch(error){
-        console.log(error.mesage)
-    return res.status(500).json({mesage: "login failed"})
+        console.log(error.mesage);
+    return res.status(500).json({mesage: "login failed"});
 }
 };
 
